@@ -4,8 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars API</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./css/loader.css">
+    <link rel="stylesheet" href="./css/infoList.css">
+    <link rel="stylesheet" href="./css/modal.css">
 </head>
 <body>
-    <h1>Init</h1>
+    <div class="page">
+        <h1 class="title">Star Wars API</h1>
+        <span class="loader"></span>
+        <div id="InfoLists">
+            <section class="container people">
+                <h2>people</h2>
+                <ul class="list" id="list-people"></ul>
+            </section>
+            <section class="container films">
+                <h2>films</h2>
+                <ul class="list" id="list-films"></ul>
+            </section>
+            <section class="container planets">
+                <h2>planets</h2>
+                <ul class="list" id="list-planets"></ul>
+            </section>
+            <section class="container species">
+                <h2>species</h2>
+                <ul class="list" id="list-species"></ul>
+            </section>
+            <section class="container starships">
+                <h2>starships</h2>
+                <ul class="list" id="list-starships"></ul>
+            </section>
+            <section class="container vehicles">
+                <h2>vehicles</h2>
+                <ul class="list" id="list-vehicles"></ul>
+            </section>
+        </div>
+    </div>
+    <div class="backdrop hide">
+        <div class="modal">
+            <h1>modal</h1>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+    <script src="./Fetch/fetch.js"></script>
 </body>
 </html>

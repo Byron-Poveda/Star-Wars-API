@@ -1,0 +1,47 @@
+#InfoLists{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    margin-top: 10px;
+}
+
+.item{
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.item:hover{
+    transform: scale(1.05);
+}
+.item--people{
+    background-color: #b13a3a;
+}
+.item--planets{
+    background-color: #6b66ff;
+}
+.item--films{
+    background-color: #66ffaa;
+}
+.item--species{
+    background-color: #ffcc6b;
+}
+.item--vehicles{
+    background-color: #66c2ff;
+}
+.item--starchips{
+    background-color: #ff66e1;
+}
+.item__span{
+    font-weight: 600;
+}
