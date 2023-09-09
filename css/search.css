@@ -1,0 +1,16 @@
+.search-section{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.search-section__input{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.search-section__input input{
+    width: 100%;
+}

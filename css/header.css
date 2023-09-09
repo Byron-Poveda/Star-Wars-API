@@ -1,0 +1,9 @@
+.header{
+    width: 100%;
+}
+.header__list{
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+    align-items: center;
+}
