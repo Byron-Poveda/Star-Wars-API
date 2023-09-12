@@ -109,10 +109,10 @@ const vehiclesRenderList = (data) => {
 };
 const starshipsRenderList = (data) => {
     starshipsList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--starchips">
+        `<li class="item pointer item--starships">
             <span class="item__span">${item.name}</span>
         </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--starchips")
+    const itemsOpenModal = document.querySelectorAll(".item--starships")
     itemsOpenModal.forEach(element => {
     element.addEventListener("click", (e)=>{
         console.log("starships",e)

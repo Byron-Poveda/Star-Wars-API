@@ -9,43 +9,83 @@
     <link rel="stylesheet" href="./css/infoList.css">
     <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/search.css">
 </head>
 <body>
     <div class="page">
         <header class="container header">
             <ul class="header__list">
-                <li class="header__item"><a href="#">Home</a></li>
-                <li class="header__item"><a href="./Search.html">Search</a></li>
+                <li class="header__item" id="Home-section">Home</li>
+                <li class="header__item" id="Search-section">Search</li>
             </ul>
         </header>
-        <h1 class="title">Star Wars API</h1>
-        <span class="loader"></span>
-        <div id="InfoLists">
-            <section class="container people">
-                <h2>people</h2>
-                <ul class="list" id="list-people"></ul>
-            </section>
-            <section class="container films">
-                <h2>films</h2>
-                <ul class="list" id="list-films"></ul>
-            </section>
-            <section class="container planets">
-                <h2>planets</h2>
-                <ul class="list" id="list-planets"></ul>
-            </section>
-            <section class="container species">
-                <h2>species</h2>
-                <ul class="list" id="list-species"></ul>
-            </section>
-            <section class="container starships">
-                <h2>starships</h2>
-                <ul class="list" id="list-starships"></ul>
-            </section>
-            <section class="container vehicles">
-                <h2>vehicles</h2>
-                <ul class="list" id="list-vehicles"></ul>
-            </section>
-        </div>
+        <section class="container home-section">
+            <div class="title-container">
+                <h1 class="title">Star Wars API</h1>
+                <span class="loader"></span>
+            </div>
+            <div id="InfoLists">
+                <section class="container people">
+                    <h2>people</h2>
+                    <ul class="list" id="list-people"></ul>
+                </section>
+                <section class="container films">
+                    <h2>films</h2>
+                    <ul class="list" id="list-films"></ul>
+                </section>
+                <section class="container planets">
+                    <h2>planets</h2>
+                    <ul class="list" id="list-planets"></ul>
+                </section>
+                <section class="container species">
+                    <h2>species</h2>
+                    <ul class="list" id="list-species"></ul>
+                </section>
+                <section class="container starships">
+                    <h2>starships</h2>
+                    <ul class="list" id="list-starships"></ul>
+                </section>
+                <section class="container vehicles">
+                    <h2>vehicles</h2>
+                    <ul class="list" id="list-vehicles"></ul>
+                </section>
+            </div>
+        </section>
+        <section class="container search-section hide">
+            <h1>Search</h1>
+            <div class="search">
+                <div class="search-menu">
+                    <button type="button" class="search__button-filter" id="buttonFilter">
+                        <span id="spanFilter">Filter</span>
+                        <svg class="svg-open-filter" id="svgOpenFilter"  width="23" height="23">
+                            <use href="./images/icons/svg.defs.svg#arrow-up"></use>
+                        </svg>
+                    </button>
+                    <ul class="search__filter-menu hide">
+                        <li class="search_filter-item">People</li>
+                        <li class="search_filter-item">Films</li>
+                        <li class="search_filter-item">Planets</li>
+                        <li class="search_filter-item">Species</li>
+                        <li class="search_filter-item">Starships<li>
+                        <li class="search_filter-item">Vehicles</li>
+                    </ul>
+                </div>
+                <input type="text" name="search" id="search" placeholder="Search" />
+                <button type="button" class="search__button-search" id="searchButton">
+                    <svg class="svg-close" width="25" height="25">
+                        <use href="./images/icons/svg.defs.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-description">
+                <span class="loader-search hide"></span>
+                <div class="counter-filter hide">
+                    <h3 class="counter__title">Total Filtered Results: <span class="counter__number"></span></h3>
+                </div>
+                <div id="filterDescription">
+                </div>
+            </div>
+        </section>
     </div>
     <div class="backdrop hide">
         <div class="modal">
@@ -58,6 +98,8 @@
         </div>   
     </div>
     <script src="./main.js"></script>
-    <script src="./Fetch/fetch.js"></script>
+    <script src="./fetch/fetch.js"></script>
+    <script src="./js/search.js"></script>
+    <script src="./js/header.js"></script>
 </body>
 </html>

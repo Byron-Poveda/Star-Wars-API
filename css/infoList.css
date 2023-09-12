@@ -3,6 +3,12 @@
     flex-direction: column;
     gap: 40px;
 }
+.title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .list{
     display: flex;
@@ -39,7 +45,7 @@
 .item--vehicles{
     background-color: #66c2ff;
 }
-.item--starchips{
+.item--starships{
     background-color: #ff66e1;
 }
 .item__span{
