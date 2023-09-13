@@ -34,22 +34,48 @@ searchFilterItems.forEach(item=>( item.addEventListener("click", (e)=>{
 
 const searchFunction = async () => {
     try {
-        counterFilter.classList.add("hide")
+        counterFilter.classList.add("hide");
         filterDescription.innerHTML = "";
-        filterDescription.removeAttribute('class')
-        searchFilterMenu.classList.add("hide")
-        svgOpenFilter.classList.remove("svg-open-filter--rotate")
-        loaderSearch.classList.remove("hide")
-        if(!searchInput.value || !optionSelect) return alert("You must fill out the entry and/or choose an option")
-        const response = await fetch(`${baseUrl}/${optionSelect.toLocaleLowerCase()}/?search=${searchInput.value}`)
+        filterDescription.removeAttribute('class');
+        searchFilterMenu.classList.add("hide");
+        svgOpenFilter.classList.remove("svg-open-filter--rotate");
+        loaderSearch.classList.remove("hide");
+        
+        if (!searchInput.value || !optionSelect) return alert("You must fill out the entry and/or choose an option");
+
+        const timeout = 10000;
+
+        if (Math.random() < 0.1) { //0.05 pq fallaran el 10% de las peticiones
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+        if (Math.random() < 0.05) { //0.05 pq fallaran el 5% de las peticiones
+            throw new Error();
+        }
+
+        const controller = new AbortController(); 
+        const signal = controller.signal;
+
+        const timeoutId = setTimeout(() => {
+            controller.abort();
+            alert("The request has timed out check your internet");
+        }, timeout);
+
+        const response = await fetch(`${baseUrl}/${optionSelect.toLowerCase()}/?search=${searchInput.value}`, { signal });
+        clearTimeout(timeoutId);
+
         const data = await response.json();
-        if(data.results.length <= 0) return alert("nothing was found with those specifications")
-        switchContent(optionSelect, data.results)
+
+        if (data.results.length <= 0) {
+            alert("Nothing was found with those specifications");
+        } else {
+            switchContent(optionSelect, data.results);
+        }
     } catch (error) {
-        console.log(error)
-    }finally{
-        searchInput.value = ""
-        loaderSearch.classList.add("hide")
+        alert("API request error check your internet");
+    } finally {
+        searchInput.value = "";
+        loaderSearch.classList.add("hide");
     }
 }
 

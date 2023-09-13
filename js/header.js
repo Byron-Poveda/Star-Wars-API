@@ -9,8 +9,3 @@ searchSection.addEventListener("click", ()=>{
     document.querySelector(".home-section").classList.add("hide")
     document.querySelector(".search-section").classList.remove("hide")
 })
-
-
-
-// FALTA COLOCAR SECCIONES CON PAGINACION PARA CADA SECCION (PEOPLE, PLANETS, FILMS, STARSHIPS...)
-// FALTA COLOCAR Q CUANDO ESTE EN UN MODAL SE PUEDA DIRIGIR A LA SECCION Q CREARE

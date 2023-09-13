@@ -21,7 +21,7 @@ const getInformation = async () => {
         await fetchAndRender(`${base_url}/starships`, starshipsList, starshipsRenderList);
         await fetchAndRender(`${base_url}/vehicles`, vehiclesList, vehiclesRenderList);
     } catch (error) {
-        console.log(error);
+        alert("API request error check your internet");
     }
 }
 
@@ -32,100 +32,48 @@ const fetchAndRender = async (url, listElement, renderFunction) => {
         const data = await response.json();
         renderFunction(data, listElement);
     } catch (error) {
-        console.log(error);
+        alert("API request error check your internet");
     } finally {
     loader.classList.add("hide");
     }
 }
-const peopleRenderList = (data) => {
-    peopleList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--people">
-            <span class="item__span">${item.name}</span>
+const renderList = (data, listElement, type) => {
+    listElement.innerHTML = data.results.map(item => `
+        <li class="item pointer item--${type}">
+            <span class="item__span">${item.name || item.title}</span>
         </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--people")
+
+    const itemsOpenModal = document.querySelectorAll(`.item--${type}`);
     itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("people",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("people",itemSpan.textContent)
-    })
-});
+        element.addEventListener("click", (e) => {
+            const itemSpan = element.getElementsByTagName("span")[0];
+            openModal(type, itemSpan.textContent);
+        });
+    });
+};
+const peopleRenderList = (data) => {
+    renderList(data, peopleList, "people");
 };
 const plantesRenderList = (data) => {
-    planetsList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--planets">
-            <span class="item__span">${item.name}</span>
-        </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--planets")
-    itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("planets",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("planets",itemSpan.textContent)
-    })
-});
+    renderList(data, planetsList, "planets");
 };
 const filmsRenderList = (data) => {
-    filmsList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--films">
-            <span class="item__span text-dark">${item.title}</span>
-        </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--films")
-    itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("films",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("films",itemSpan.textContent)
-    })
-});
+    renderList(data, filmsList, "films");
 };
 const speciesRenderList = (data) => {
-    speciesList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--species">
-            <span class="item__span text-dark">${item.name}</span>
-        </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--species")
-    itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("species",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("species",itemSpan.textContent)
-    })
-});
+    renderList(data, speciesList, "species");
 };
 const vehiclesRenderList = (data) => {
-    vehiclesList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--vehicles">
-            <span class="item__span text-dark">${item.name}</span>
-        </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--vehicles")
-    itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("vehicles",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("vehicles",itemSpan.textContent)
-    })
-});
+    renderList(data, vehiclesList, "vehicles");
 };
 const starshipsRenderList = (data) => {
-    starshipsList.innerHTML = data.results.map(item => 
-        `<li class="item pointer item--starships">
-            <span class="item__span">${item.name}</span>
-        </li>`).join('');
-    const itemsOpenModal = document.querySelectorAll(".item--starships")
-    itemsOpenModal.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        console.log("starships",e)
-        const itemSpan = element.getElementsByTagName("span")[0]
-        openModal("starships",itemSpan.textContent)
-    })
-});
+    renderList(data, starshipsList, "starships");
 };
 const closeModalFunction = () => {
     backdrop.classList.add('hide'); 
 }
 
-backdrop.addEventListener("click",()=>{
+backdrop.addEventListener("click", () => {
     closeModalFunction() 
 })
 
@@ -176,7 +124,7 @@ const openModal = async (type,search) => {
                         <svg class="svg-gender" width="25" height="25"><use href="./images/icons/svg.defs.svg#${results?.gender || ''}"></use></svg>
                     </span>
                 </li>
-            </ul>    
+            </ul>   
             `
             modal.innerHTML = newElements;
             break;
@@ -401,7 +349,7 @@ const openModal = async (type,search) => {
             break;
         }
     }catch(err){
-    console.log(err)
+        alert("There was an error bringing the API information, check your internet connection")
     }finally{
         loaderModal.classList.add("hide")
     }
