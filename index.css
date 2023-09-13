@@ -1,0 +1,90 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: lightgray;
+    background-color: #1e2335;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+  }
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+    font-style: normal;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0px;
+    margin: 0px;
+  }
+  a {
+    text-decoration: none;
+}
+  a:hover,
+  a:focus,
+  a:active,
+  a:visited {
+    background-color: rgb(63 63 70);
+  }
+  button {
+    border-radius: 4px;
+    border: none;
+    transition: all .3s;
+}
+  section{
+    text-transform: capitalize;
+  }
+  .page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+  }
+  .title{
+    font-weight: bold ;
+    font-size : 25px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .pointer {
+    cursor: pointer;
+  }
+  .hide {
+    display: none !important;
+  }
+  .text-dark{
+    color: #59595c !important;
+  }
+  .backdrop:hover {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 767px) {
+    .container {
+      max-width: 480px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
