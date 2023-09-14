@@ -31,9 +31,7 @@ const newFunctionList = (type) => {
     if(type==='starships')return starshipsRenderList
 }
 
-let currentPage = 1;
-
-const prevPage = async (type) => {
+const prevPage = async (type, currentPage) => {
     if(currentPage <= 1) return
     const list = newRenderList(type)
     list.innerHTML = ""
@@ -42,7 +40,7 @@ const prevPage = async (type) => {
     currentSpan.innerHTML = currentPage
     await fetchAndRender(`${base_url}/${type}`, list, newFunctionList(type), currentPage, type);
 }
-const nextPage = async (type, totalPages) => {
+const nextPage = async (type, totalPages, currentPage) => {
     if(currentPage >= totalPages) return
     const list = newRenderList(type)
     list.innerHTML = ""
@@ -117,8 +115,8 @@ const renderList = async (data, listElement, type) => {
     }`
     const prevButton = document.querySelector(`.pagination__prev-${type}`)
     const nextButton = document.querySelector(`.pagination__next-${type}`)
-    prevButton && prevButton.addEventListener("click", () => prevPage(type))
-    nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded))
+    prevButton && prevButton.addEventListener("click", () => prevPage(type, data.next[data.next.length - 1]-1))
+    nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded, data.next[data.next.length - 1]-1))
 };
 
 
