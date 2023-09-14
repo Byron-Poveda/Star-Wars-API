@@ -3,6 +3,13 @@
     flex-direction: column;
     gap: 40px;
 }
+
+.infoList__section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .title-container{
     display: flex;
     justify-content: center;
@@ -14,7 +21,6 @@
     display: flex;
     flex-wrap: wrap;
     grid-gap: 10px;
-    margin-top: 10px;
 }
 
 .item{

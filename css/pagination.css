@@ -1,0 +1,29 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    gap: 15px;
+    width: 100%;
+}
+
+.pagination button{
+    background: #f3f2b8;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    transition: background .2s;
+}
+.pagination button:hover{
+    background: #eeec82;
+}
+.pagination__prev-svg{
+    transform: rotate(-90deg);
+}
+.pagination__next-svg{
+    transform: rotate(90deg);
+}
