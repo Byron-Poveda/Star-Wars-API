@@ -497,10 +497,8 @@ const openModalSearch = async (type, search) => {
     modalSearch.innerHTML = "";
     try {
         const response = await fetch(search)
-        console.log(response)
         const results = await response.json()
         let newElements = '';
-        console.log(type, results)
         switch(type.toLowerCase()){
             case "people":
                 const eyeColors = results?.eye_color.split("-")
@@ -760,7 +758,6 @@ const openModalSearch = async (type, search) => {
             break;
         }
     }catch(err){
-        console.log(err)
         alert("There was an error bringing the API information, check your internet connection")
     }finally{
         loaderModalSearch.classList.add("hide")
