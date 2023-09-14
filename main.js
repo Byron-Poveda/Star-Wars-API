@@ -98,7 +98,6 @@ const renderList = async (data, listElement, type) => {
     const paginationContainer = await document.querySelector(`.pagination__${type}`)
     const pagesRedounded = Math.ceil(data.count / 10)
     const pageNow = data.next === null ? data.previous === null ? '' : parseInt(data.previous[data.previous.length - 1])+1 : parseInt(data.next[data.next.length - 1])-1 
-    console.log(data, pageNow)
     paginationContainer.innerHTML = `
     ${pagesRedounded > 1 ? `${pageNow <= 1 ? '' : `<button class="pagination__prev-${type}">
         <svg class="pagination__prev-svg" id="prevSvg"  width="23" height="23">
