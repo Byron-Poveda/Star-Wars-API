@@ -97,26 +97,30 @@ const renderList = async (data, listElement, type) => {
     });
     const paginationContainer = await document.querySelector(`.pagination__${type}`)
     const pagesRedounded = Math.ceil(data.count / 10)
+    const pageNow = data.next === null ? data.previous === null ? '' : parseInt(data.previous[data.previous.length - 1])+1 : parseInt(data.next[data.next.length - 1])-1 
+    console.log(data, pageNow)
     paginationContainer.innerHTML = `
-    ${pagesRedounded > 1 ? `<button class="pagination__prev-${type}">
+    ${pagesRedounded > 1 ? `${pageNow <= 1 ? '' : `<button class="pagination__prev-${type}">
         <svg class="pagination__prev-svg" id="prevSvg"  width="23" height="23">
             <use href="./images/icons/svg.defs.svg#arrow-up"></use>
         </svg>
-    </button>
+    </button>`
+    }
     <div class="pagination__container">
-        <span class="pagination__span"><span class="pagination__span--current-${type}">${data.next[data.next.length - 1]-1}</span> of ${pagesRedounded}</span>
+        <span class="pagination__span"><span class="pagination__span--current-${type}">${pageNow}</span> of ${pagesRedounded}</span>
     </div>
-     <button class="pagination__next-${type}">
+    ${pageNow >= pagesRedounded ? '' : `<button class="pagination__next-${type}">
         <svg class="pagination__next-svg" id="nextSvg"  width="23" height="23">
             <use href="./images/icons/svg.defs.svg#arrow-up"></use>
         </svg>
     </button>`
+    }`
     : ''
     }`
     const prevButton = document.querySelector(`.pagination__prev-${type}`)
     const nextButton = document.querySelector(`.pagination__next-${type}`)
-    prevButton && prevButton.addEventListener("click", () => prevPage(type, data.next[data.next.length - 1]-1))
-    nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded, data.next[data.next.length - 1]-1))
+    prevButton && prevButton.addEventListener("click", () => prevPage(type, pageNow))
+    nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded, pageNow))
 };
 
 
