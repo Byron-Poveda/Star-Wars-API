@@ -12,49 +12,121 @@ const backdrop = document.querySelector(".backdrop")
 const modal = document.querySelector(".modal-description")
 const base_url = 'https://swapi.dev/api';
 
+// paginación
+const newRenderList = (type) => {
+    if(type === 'people') return peopleList
+    if(type === "planets") return planetsList
+    if(type === "films")return filmsList
+    if(type === "species")return speciesList
+    if(type === "vehicles")return vehiclesList
+    if(type === "starships")return starshipsList
+}
+
+const newFunctionList = (type) => {
+    if(type ==='people') return peopleRenderList
+    if(type === "planets") return planetsRenderList
+    if(type ==="films")return filmsRenderList
+    if(type==="species")return speciesRenderList
+    if(type=== "vehicles")return vehiclesRenderList
+    if(type==='starships')return starshipsRenderList
+}
+
+let currentPage = 1;
+
+const prevPage = async (type) => {
+    if(currentPage <= 1) return
+    const list = newRenderList(type)
+    list.innerHTML = ""
+    currentPage--
+    const currentSpan = document.querySelector(`.pagination__span--current-${type}`)
+    currentSpan.innerHTML = currentPage
+    await fetchAndRender(`${base_url}/${type}`, list, newFunctionList(type), currentPage, type);
+}
+const nextPage = async (type, totalPages) => {
+    if(currentPage >= totalPages) return
+    const list = newRenderList(type)
+    list.innerHTML = ""
+    currentPage ++;
+    const currentSpan = document.querySelector(`.pagination__span--current-${type}`)
+    currentSpan.innerHTML = currentPage
+    await fetchAndRender(`${base_url}/${type}`, list, newFunctionList(type), currentPage ,type);
+}
+
+
+// fetchs a la api
 const getInformation = async () => {
     try {
-        await fetchAndRender(`${base_url}/people`, peopleList, peopleRenderList);
-        await fetchAndRender(`${base_url}/films`, filmsList, filmsRenderList);
-        await fetchAndRender(`${base_url}/planets`, planetsList, plantesRenderList);
-        await fetchAndRender(`${base_url}/species`, speciesList, speciesRenderList);
-        await fetchAndRender(`${base_url}/starships`, starshipsList, starshipsRenderList);
-        await fetchAndRender(`${base_url}/vehicles`, vehiclesList, vehiclesRenderList);
+        await fetchAndRender(`${base_url}/people`, peopleList, peopleRenderList, 1,'people');
+        await fetchAndRender(`${base_url}/films`, filmsList, filmsRenderList, 1,'films');
+        await fetchAndRender(`${base_url}/planets`, planetsList, planetsRenderList, 1,'planets');
+        await fetchAndRender(`${base_url}/species`, speciesList, speciesRenderList, 1,'species');
+        await fetchAndRender(`${base_url}/starships`, starshipsList, starshipsRenderList, 1,'starships');
+        await fetchAndRender(`${base_url}/vehicles`, vehiclesList, vehiclesRenderList, 1,'vehicles');
     } catch (error) {
         alert("API request error check your internet");
     }
 }
 
-const fetchAndRender = async (url, listElement, renderFunction) => {
-    loader.classList.remove("hide");
+// fetch unicamente del tipo y pagina q quiero
+const fetchAndRender = async (url, listElement, renderFunction, page = 1, type) => {
+    const loaderList = document.getElementById(`loader-${type}`)
+    loaderList.classList.remove("hide")
     try {
-        const response = await fetch(url);
+        const response = await fetch(`${url}/?page=${page}`);
         const data = await response.json();
         renderFunction(data, listElement);
     } catch (error) {
         alert("API request error check your internet");
-    } finally {
-    loader.classList.add("hide");
+    }finally{
+        loaderList.classList.add("hide")
     }
 }
-const renderList = (data, listElement, type) => {
-    listElement.innerHTML = data.results.map(item => `
+
+// renderiza las listas segun el tipo, lista a renderizar
+const renderList = async (data, listElement, type) => {
+    listElement.innerHTML = await data.results.map(item => `
         <li class="item pointer item--${type}">
             <span class="item__span">${item.name || item.title}</span>
-        </li>`).join('');
+        </li>
+        `).join('');
 
     const itemsOpenModal = document.querySelectorAll(`.item--${type}`);
     itemsOpenModal.forEach(element => {
-        element.addEventListener("click", (e) => {
+        element.addEventListener("click", () => {
             const itemSpan = element.getElementsByTagName("span")[0];
             openModal(type, itemSpan.textContent);
         });
     });
+    const paginationContainer = await document.querySelector(`.pagination__${type}`)
+    const pagesRedounded = Math.ceil(data.count / 10)
+    paginationContainer.innerHTML = `
+    ${pagesRedounded > 1 ? `<button class="pagination__prev-${type}">
+        <svg class="pagination__prev-svg" id="prevSvg"  width="23" height="23">
+            <use href="./images/icons/svg.defs.svg#arrow-up"></use>
+        </svg>
+    </button>
+    <div class="pagination__container">
+        <span class="pagination__span"><span class="pagination__span--current-${type}">${data.next[data.next.length - 1]-1}</span> of ${pagesRedounded}</span>
+    </div>
+     <button class="pagination__next-${type}">
+        <svg class="pagination__next-svg" id="nextSvg"  width="23" height="23">
+            <use href="./images/icons/svg.defs.svg#arrow-up"></use>
+        </svg>
+    </button>`
+    : ''
+    }`
+    const prevButton = document.querySelector(`.pagination__prev-${type}`)
+    const nextButton = document.querySelector(`.pagination__next-${type}`)
+    prevButton && prevButton.addEventListener("click", () => prevPage(type))
+    nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded))
 };
+
+
+// funciones separadas segun las listas a renderizar
 const peopleRenderList = (data) => {
     renderList(data, peopleList, "people");
 };
-const plantesRenderList = (data) => {
+const planetsRenderList = (data) => {
     renderList(data, planetsList, "planets");
 };
 const filmsRenderList = (data) => {
@@ -69,6 +141,9 @@ const vehiclesRenderList = (data) => {
 const starshipsRenderList = (data) => {
     renderList(data, starshipsList, "starships");
 };
+
+// cierra el modal
+
 const closeModalFunction = () => {
     backdrop.classList.add('hide'); 
 }
@@ -81,7 +156,8 @@ closeModal.addEventListener("click", () => {
     closeModalFunction()
 })
 
-const openModal = async (type,search) => {
+// abre el modal y renderiza el contenido segun el tipo y la informacion q retorne la api
+const openModal = async (type, search) => {
     loaderModal.classList.remove("hide")
     backdrop.classList.remove("hide")
     modal.innerHTML = "";

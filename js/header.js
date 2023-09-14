@@ -9,3 +9,5 @@ searchSection.addEventListener("click", ()=>{
     document.querySelector(".home-section").classList.add("hide")
     document.querySelector(".search-section").classList.remove("hide")
 })
+
+// agregar secciones y paginación

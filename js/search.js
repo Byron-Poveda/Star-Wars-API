@@ -91,267 +91,267 @@ const switchContent = (type, results) => {
             newElementFilter = results.map(result => (
             eyeColors = result?.eye_color.split("-"),
             `
-        <h1 class="modal__title">${result?.name || ''}</h1>
-        <ul class="modal__list">
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Height:</span>
-                <span class="modal__especifications-value">${result?.height || ''}</span>
+        <h1 class="search-description__title">${result?.name || ''}</h1>
+        <ul class="search-description__list">
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Height:</span>
+                <span class="search-description__especifications-value">${result?.height || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Hair Color:</span>
-                <span class="modal__especifications-value">${result?.hair_color || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Hair Color:</span>
+                <span class="search-description__especifications-value">${result?.hair_color || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Skin Color:</span>
-                <span class="modal__especifications-value">${result?.skin_color || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Skin Color:</span>
+                <span class="search-description__especifications-value">${result?.skin_color || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Eye Color:</span>
-                <span class="modal__especifications-value modal__especifications--eye-color">${result?.eye_color || ''} 
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Eye Color:</span>
+                <span class="search-description__especifications-value search-description__especifications--eye-color">${result?.eye_color || ''} 
                     <div class="eye-color" style="background: linear-gradient(to right, ${eyeColors[0]}, ${eyeColors[1] || eyeColors[0]});"></div>
                 </span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Birth Year:</span>
-                <span class="modal__especifications-value">${result?.birth_year || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Birth Year:</span>
+                <span class="search-description__especifications-value">${result?.birth_year || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Gender:</span>
-                <span class="modal__especifications-value modal__especifications--gender">${result?.gender || ''} 
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Gender:</span>
+                <span class="search-description__especifications-value search-description__especifications--gender">${result?.gender || ''} 
                     <svg class="svg-gender" width="25" height="25"><use href="./images/icons/svg.defs.svg#${result?.gender || ''}"></use></svg>
                 </span>
             </li>
         </ul>    
         `
         ))
-        newNode.innerHTML = newElementFilter;
+        newNode.innerHTML = newElementFilter.join(" ");
         filterDescription.appendChild(newNode)
         break;
         case "films":
             newElementFilter = results.map(result => ( `
-        <h1 class="modal__title">${result?.title || ''}</h1>
-        <ul class="modal__list">
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Director:</span>
-                <span class="modal__especifications-value">${result?.director || ''}</span>
+        <h1 class="search-description__title">${result?.title || ''}</h1>
+        <ul class="search-description__list">
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Director:</span>
+                <span class="search-description__especifications-value">${result?.director || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Producer:</span>
-                <span class="modal__especifications-value">${result?.producer || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Producer:</span>
+                <span class="search-description__especifications-value">${result?.producer || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Release Date:</span>
-                <span class="modal__especifications-value">${result?.release_date || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Release Date:</span>
+                <span class="search-description__especifications-value">${result?.release_date || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Epode Id:</span>
-                <span class="modal__especifications-value">${result?.episode_id || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Epode Id:</span>
+                <span class="search-description__especifications-value">${result?.episode_id || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Opening crawl:</span>
-                <span class="modal__especifications-value modal__especifications--opening_crawl-small">${result?.opening_crawl || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Opening crawl:</span>
+                <span class="search-description__especifications-value search-description__especifications--opening_crawl-small">${result?.opening_crawl || ''}</span>
             </li>
         </ul>    
         `))
-        newNode.innerHTML = newElementFilter;
+        newNode.innerHTML = newElementFilter.join(" ");
         filterDescription.appendChild(newNode)
-        const especifications = document.querySelectorAll(".modal__especifications--opening_crawl-small")
+        const especifications = document.querySelectorAll(".search-description__especifications--opening_crawl-small")
         especifications.forEach(element => (
             element.addEventListener("mouseenter", ()=>{
-                element.classList.add("modal__especifications--opening_crawl")
+                element.classList.add("search-description__especifications--opening_crawl")
             }),
             element.addEventListener("mouseleave", ()=>{
-                element.classList.remove("modal__especifications--opening_crawl")
+                element.classList.remove("search-description__especifications--opening_crawl")
             })
         ))
         
         break;
         case "planets":
             newElementFilter = results.map(result => ( `
-        <h1 class="modal__title">${result?.name || ''}</h1>
-        <ul class="modal__list">
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Director:</span>
-                <span class="modal__especifications-value">${result?.rotation_period || ''}</span>
+        <h1 class="search-description__title">${result?.name || ''}</h1>
+        <ul class="search-description__list">
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Director:</span>
+                <span class="search-description__especifications-value">${result?.rotation_period || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Producer:</span>
-                <span class="modal__especifications-value">${result?.orbital_period || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Producer:</span>
+                <span class="search-description__especifications-value">${result?.orbital_period || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Release Date:</span>
-                <span class="modal__especifications-value">${result?.diameter || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Release Date:</span>
+                <span class="search-description__especifications-value">${result?.diameter || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Epode Id:</span>
-                <span class="modal__especifications-value">${result?.climate || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Epode Id:</span>
+                <span class="search-description__especifications-value">${result?.climate || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Gravity:</span>
-                <span class="modal__especifications-value">${result?.gravity || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Gravity:</span>
+                <span class="search-description__especifications-value">${result?.gravity || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Terrain:</span>
-                <span class="modal__especifications-value">${result?.terrain || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Terrain:</span>
+                <span class="search-description__especifications-value">${result?.terrain || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Surface Water:</span>
-                <span class="modal__especifications-value">${result?.surface_water || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Surface Water:</span>
+                <span class="search-description__especifications-value">${result?.surface_water || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Population:</span>
-                <span class="modal__especifications-value">${result?.population || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Population:</span>
+                <span class="search-description__especifications-value">${result?.population || ''}</span>
             </li>
         </ul>    
         `))
-        newNode.innerHTML = newElementFilter;
+        newNode.innerHTML = newElementFilter.join(" ");
         filterDescription.appendChild(newNode)
         break;
         case "species":
             newElementFilter = results.map(result => ( `
-        <h1 class="modal__title">${result?.name || ''}</h1>
-        <ul class="modal__list">
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Classification:</span>
-                <span class="modal__especifications-value">${result?.classification || ''}</span>
+        <h1 class="search-description__title">${result?.name || ''}</h1>
+        <ul class="search-description__list">
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Classification:</span>
+                <span class="search-description__especifications-value">${result?.classification || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Designation:</span>
-                <span class="modal__especifications-value">${result?.designation || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Designation:</span>
+                <span class="search-description__especifications-value">${result?.designation || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Average Height:</span>
-                <span class="modal__especifications-value">${result?.average_height || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Average Height:</span>
+                <span class="search-description__especifications-value">${result?.average_height || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Skin Colors:</span>
-                <span class="modal__especifications-value">${result?.skin_colors || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Skin Colors:</span>
+                <span class="search-description__especifications-value">${result?.skin_colors || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Hair Colors:</span>
-                <span class="modal__especifications-value">${result?.hair_colors || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Hair Colors:</span>
+                <span class="search-description__especifications-value">${result?.hair_colors || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Eye Colors:</span>
-                <span class="modal__especifications-value">${result?.eye_colors || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Eye Colors:</span>
+                <span class="search-description__especifications-value">${result?.eye_colors || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Average Lifespan:</span>
-                <span class="modal__especifications-value">${result?.average_lifespan || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Average Lifespan:</span>
+                <span class="search-description__especifications-value">${result?.average_lifespan || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Language:</span>
-                <span class="modal__especifications-value">${result?.language || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Language:</span>
+                <span class="search-description__especifications-value">${result?.language || ''}</span>
             </li>
         </ul>    
         `))
-        newNode.innerHTML = newElementFilter;
+        newNode.innerHTML = newElementFilter.join(" ");
         filterDescription.appendChild(newNode)
         break;
         case "starships":
             newElementFilter = results.map(result => ( `
-        <h1 class="modal__title">${result?.name || ''}</h1>
-        <ul class="modal__list">
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Model:</span>
-                <span class="modal__especifications-value">${result?.model || ''}</span>
+        <h1 class="search-description__title">${result?.name || ''}</h1>
+        <ul class="search-description__list">
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Model:</span>
+                <span class="search-description__especifications-value">${result?.model || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Manufacturer:</span>
-                <span class="modal__especifications-value">${result?.manufacturer || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Manufacturer:</span>
+                <span class="search-description__especifications-value">${result?.manufacturer || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Cost In Credits:</span>
-                <span class="modal__especifications-value">${result?.cost_in_credits || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Cost In Credits:</span>
+                <span class="search-description__especifications-value">${result?.cost_in_credits || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">Length:</span>
-                <span class="modal__especifications-value">${result?.length || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">Length:</span>
+                <span class="search-description__especifications-value">${result?.length || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">max atmosphering speed:</span>
-                <span class="modal__especifications-value">${result?.max_atmosphering_speed || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">max atmosphering speed:</span>
+                <span class="search-description__especifications-value">${result?.max_atmosphering_speed || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">crew:</span>
-                <span class="modal__especifications-value">${result?.crew || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">crew:</span>
+                <span class="search-description__especifications-value">${result?.crew || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">passengers:</span>
-                <span class="modal__especifications-value">${result?.passengers || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">passengers:</span>
+                <span class="search-description__especifications-value">${result?.passengers || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">cargo capacity:</span>
-                <span class="modal__especifications-value">${result?.cargo_capacity || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">cargo capacity:</span>
+                <span class="search-description__especifications-value">${result?.cargo_capacity || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">consumables:</span>
-                <span class="modal__especifications-value">${result?.consumables || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">consumables:</span>
+                <span class="search-description__especifications-value">${result?.consumables || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">hyperdrive rating:</span>
-                <span class="modal__especifications-value">${result?.hyperdrive_rating || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">hyperdrive rating:</span>
+                <span class="search-description__especifications-value">${result?.hyperdrive_rating || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">MGLT:</span>
-                <span class="modal__especifications-value">${result?.MGLT || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">MGLT:</span>
+                <span class="search-description__especifications-value">${result?.MGLT || ''}</span>
             </li>
-            <li class="modal__especifications">
-                <span class="modal__especifications-key">starship class:</span>
-                <span class="modal__especifications-value">${result?.starship_class || ''}</span>
+            <li class="search-description__especifications">
+                <span class="search-description__especifications-key">starship class:</span>
+                <span class="search-description__especifications-value">${result?.starship_class || ''}</span>
             </li>
         </ul>    
         `))
-        newNode.innerHTML = newElementFilter;
+        newNode.innerHTML = newElementFilter.join(" ");
         filterDescription.appendChild(newNode)
         break;
         case "vehicles":
             newElementFilter = results.map(result => ( `
-            <h1 class="modal__title">${result?.name || ''}</h1>
-            <ul class="modal__list">
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">Model:</span>
-                    <span class="modal__especifications-value">${result?.model || ''}</span>
+            <h1 class="search-description__title">${result?.name || ''}</h1>
+            <ul class="search-description__list">
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">Model:</span>
+                    <span class="search-description__especifications-value">${result?.model || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">Manufacturer:</span>
-                    <span class="modal__especifications-value">${result?.manufacturer || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">Manufacturer:</span>
+                    <span class="search-description__especifications-value">${result?.manufacturer || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">Cost In Credits:</span>
-                    <span class="modal__especifications-value">${result?.cost_in_credits || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">Cost In Credits:</span>
+                    <span class="search-description__especifications-value">${result?.cost_in_credits || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">Length:</span>
-                    <span class="modal__especifications-value">${result?.length || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">Length:</span>
+                    <span class="search-description__especifications-value">${result?.length || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">max atmosphering speed:</span>
-                    <span class="modal__especifications-value">${result?.max_atmosphering_speed || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">max atmosphering speed:</span>
+                    <span class="search-description__especifications-value">${result?.max_atmosphering_speed || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">crew:</span>
-                    <span class="modal__especifications-value">${result?.crew || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">crew:</span>
+                    <span class="search-description__especifications-value">${result?.crew || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">passengers:</span>
-                    <span class="modal__especifications-value">${result?.passengers || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">passengers:</span>
+                    <span class="search-description__especifications-value">${result?.passengers || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">cargo capacity:</span>
-                    <span class="modal__especifications-value">${result?.cargo_capacity || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">cargo capacity:</span>
+                    <span class="search-description__especifications-value">${result?.cargo_capacity || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">consumables:</span>
-                    <span class="modal__especifications-value">${result?.consumables || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">consumables:</span>
+                    <span class="search-description__especifications-value">${result?.consumables || ''}</span>
                 </li>
-                <li class="modal__especifications">
-                    <span class="modal__especifications-key">vehicle class:</span>
-                    <span class="modal__especifications-value">${result?.vehicle_class || ''}</span>
+                <li class="search-description__especifications">
+                    <span class="search-description__especifications-key">vehicle class:</span>
+                    <span class="search-description__especifications-value">${result?.vehicle_class || ''}</span>
                 </li>
             </ul>    
             `))
-            newNode.innerHTML = newElementFilter;
+            newNode.innerHTML = newElementFilter.join(" ");
             filterDescription.appendChild(newNode)
         break;
     }

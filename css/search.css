@@ -130,3 +130,66 @@
 .svg-open-filter--rotate{
     rotate: 180deg;
 }
+
+.search-description-description{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-description__title{
+    color: #000;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.search-description__list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-description__especifications{
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+}
+
+.search-description__especifications-key{
+    color: #b13a3a;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+.search-description__especifications-value{
+    color: #000;
+    font-size: 16px;
+}
+.search-description__especifications--gender{
+    position: relative;
+}
+.search-description__especifications--eye-color{
+    display: flex;
+    gap: 6px;
+}
+.search-description__especifications--opening_crawl-small{
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.search-description__especifications--opening_crawl{
+    display: block !important;
+}
+.svg-gender{
+    position: absolute;
+    top: -5px;
+    right: -25px;
+}
+.eye-color{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}

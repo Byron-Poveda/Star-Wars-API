@@ -52,10 +52,14 @@ body {
     width: 100%;
   }
   .title{
-    font-weight: bold ;
-    font-size : 25px;
+    font-weight: 700;
+    font-size : 32px;
     margin-bottom: 10px;
     text-align: center;
+    background-image: linear-gradient(to bottom, #eeec82, #ffffff);;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .container {
     padding-left: 15px;
