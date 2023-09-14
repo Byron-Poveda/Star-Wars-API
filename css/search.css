@@ -90,7 +90,7 @@
 .container-info-filter{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 45px;
 }
 
 .filter--people{
@@ -147,7 +147,7 @@
 .search-description__list{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .search-description__especifications{
@@ -182,6 +182,40 @@
 }
 .search-description__especifications--opening_crawl{
     display: block !important;
+}
+.search-description__especifications-value--select{
+    border-radius: 10px;
+    padding: 0px 10px;
+    border: 1px solid #000;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.search-description__especifications-value--select option{
+    text-transform: capitalize;
+}
+.select-people{
+    background: linear-gradient(180deg, #f5a8a862 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
+}
+.select-planets{
+    background: linear-gradient(180deg, #b1aef762 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
+}
+.select-films{
+    background: linear-gradient(180deg, #b9f7d562 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
+}
+.select-species{
+    background: linear-gradient(180deg, #f5dfb562 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
+}
+.select-vehicles{
+    background: linear-gradient(180deg, #aad9f862 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
+}
+.select-starships{
+    background: linear-gradient(180deg, #f8ace962 0.01%, #F9FCFE 99.99%);
+    box-shadow: 5px 8px 15px 0px rgba(243, 217, 237, 0.37);
 }
 .svg-gender{
     position: absolute;
