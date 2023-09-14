@@ -119,6 +119,7 @@ const renderList = async (data, listElement, type) => {
     }`
     const prevButton = document.querySelector(`.pagination__prev-${type}`)
     const nextButton = document.querySelector(`.pagination__next-${type}`)
+    // asigancion de funciones a los botones de la paginacion
     prevButton && prevButton.addEventListener("click", () => prevPage(type, pageNow))
     nextButton && nextButton.addEventListener("click", () => nextPage(type, pagesRedounded, pageNow))
 };
